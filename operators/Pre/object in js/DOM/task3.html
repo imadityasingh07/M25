@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+    <style>
+      .parent {
+        height: 300px;
+        width: 400px;
+        background-color: orange;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #child {
+        height: 200px;
+        width: 300px;
+        background-color: rgb(89, 255, 0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      button {
+        padding: 20px 40px; /* Corrected padding */
+        background-color: brown;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="parent">
+      <div id="child">
+        <button id="btn">Click</button>
+      </div>
+    </div>
+
+    <script>
+      let parentTag = document.querySelector(".parent");
+      let childTag = document.getElementById("child");
+      let btnTag = document.getElementById("btn");
+
+      parentTag.addEventListener("click", () => {
+        console.log("parent event triggered");
+      });
+
+      childTag.addEventListener("click", () => {
+        console.log("child event triggered");
+      });
+
+      btnTag.addEventListener("click", (e) => {
+        // Uncomment the next line if you want to stop bubbling
+        // e.stopPropagation();
+        console.log("btn event triggered");
+      });
+    </script>
+  </body>
+</html>

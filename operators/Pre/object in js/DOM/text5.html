@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2 class="head2">heading tag</h2>
+    <p class="a">Item 1</p>
+    <p class="a">Item 2</p>
+
+    <script>
+      // Select and modify the h2 element
+      let head2Tag = document.querySelector(".head2");
+      console.log(head2Tag);
+      head2Tag.innerText = "changed";
+
+      // Select all elements with class 'a'
+      let allTags = document.querySelectorAll(".a");
+      console.log(allTags);
+    </script>
+  </body>
+</html>

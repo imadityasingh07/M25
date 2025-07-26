@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .rohit {
+        background-color: blueviolet;
+        height: 300px;
+        width: 300px;
+        color: white;
+      }
+
+      .bumrah {
+        background-color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="abc">
+      <h1>DOM METHODS AND PROPERTIES</h1>
+    </div>
+    <p class="abc">HELLO WORLD</p>
+    <h2>WELCOME TO DOM CLASS</h2>
+    <a href="#">AMAZON</a>
+
+    <script>
+      // Select elements
+      let h4Ele = document.getElementById("h4"); // Doesn't exist currently
+      let divElement = document.getElementById("abc");
+      let pTag = document.querySelector(".abc"); // Fixed: ".xyz" → ".abc"
+      let h2Tag = document.getElementsByTagName("h2")[0];
+
+      // Attribute methods
+      divElement.setAttribute("align", "center");
+      let id = divElement.getAttribute("id");
+      console.log("ID:", id); // abc
+
+      let isAlign = divElement.hasAttribute("align");
+      console.log("Has align:", isAlign); // true
+
+      divElement.removeAttribute("align");
+
+      // ClassList operations
+      console.log(pTag.classList);
+      pTag.classList.add("rohit");
+      pTag.classList.add("bumrah");
+      pTag.classList.remove("virat");
+      pTag.classList.replace("rohit", "bumrah"); // replaces 'rohit' with 'bumrah'
+
+      pTag.classList.toggle("rohit");
+      pTag.classList.toggle("bumrah");
+      pTag.classList.toggle("virat");
+
+      // Create a new element
+      let x = document.createElement("web");
+      x.innerText = "Good Evening";
+      x.style.color = "brown";
+      console.log("Created element:", x);
+
+      // Add element to the page
+      divElement.appendChild(x);      // Adds to end
+      x.remove();                     // Removes the same element
+      divElement.prepend(x);         // Adds it to the top of div
+
+      // Replace div content
+      divElement.innerHTML = "<web>GOOD EVENING SIR</web>";
+
+      // Insert another element before a reference node (if exists)
+      let anotherX = document.createElement("web");
+      anotherX.innerText = "Good Evening";
+
+      if (h4Ele) {
+        divElement.insertBefore(anotherX, h4Ele);
+      } else {
+        console.log("No element with id='h4' to insert before.");
+      }
+    </script>
+  </body>
+</html>

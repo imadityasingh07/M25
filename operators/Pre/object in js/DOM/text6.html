@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="xyz">
+      <h1>DOM METHODS AND PROPERTIES</h1>
+    </div>
+    <p class="xyz">Namste India</p>
+    <h2>WELCOME TO CLASS METHODS</h2>
+    <a href="#">Click Me</a>
+
+    <script>
+      // Correct element selections
+      let divElement = document.getElementById("xyz");
+      let pTag = document.querySelector(".xyz");
+      let h2Tag = document.getElementsByTagName("h2")[0];
+
+      // Content updates
+      pTag.innerText = "HELLO SIR";
+      console.log(pTag.innerText);
+
+      h2Tag.textContent = "Namste India";
+      pTag.innerHTML = "<mark>Namste sir</mark>";
+
+      console.log(divElement.innerText);
+      console.log(divElement.innerHTML);
+
+      // Styling
+      pTag.style.color = "red";
+      pTag.style.backgroundColor = "brown";
+      pTag.style.height = "200px";
+      pTag.style.fontSize = "50px";
+      pTag.style.textAlign = "center"; 
+
+      document.body.style.background = "gray";
+
+      
+      let anchor = document.querySelector("a");
+      anchor.href = "https://www.amazon.in";
+      anchor.target = "_blank";
+    </script>
+  </body>
+</html>
