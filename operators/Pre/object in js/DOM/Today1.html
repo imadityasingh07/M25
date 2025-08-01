@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Changing Color Boxes</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-color: blue;
+      }
+
+      h1 {
+        text-align: center;
+        color: white;
+      }
+
+      #button-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        color: white;
+      }
+
+      #startBtn {
+        background-color: #28a745; /* Green */
+      }
+
+      #stopBtn {
+        background-color: #dc3545; /* Red */
+      }
+
+      #resetBtn {
+        background-color: #007bff; /* Blue */
+      }
+
+      #box-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      .box {
+        width: 60px;
+        height: 60px;
+        background-color: gray;
+        border-radius: 8px;
+        transition: background-color 0.5s;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Colorful Boxes</h1>
+
+    <div id="button-container">
+      <button id="startBtn" onclick="startColors()">Start</button>
+      <button id="stopBtn" onclick="stopColors()">Stop</button>
+      <button id="resetBtn" onclick="resetColors()">Reset</button>
+    </div>
+
+    <div id="box-container"></div>
+
+    <script>
+      const boxContainer = document.getElementById("box-container");
+      const totalBoxes = 50;
+      let intervalId;
+      let currentBoxIndex = 0;
+      let originalColors = [];
+
+      // Generate a random hex color
+      function getRandomColor() {
+        const letters = "0123456789ABCDEF";
+        let color = "#";
+        for (let i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+
+      // Create 50 boxes with initial random colors
+      for (let i = 0; i < totalBoxes; i++) {
+        const box = document.createElement("div");
+        box.classList.add("box");
+        const color = getRandomColor();
+        box.style.backgroundColor = color;
+        originalColors.push(color);
+        boxContainer.appendChild(box);
+      }
+
+      // Start changing one box color at a time
+      function startColors() {
+        if (intervalId) return;
+        const boxes = document.querySelectorAll(".box");
+        intervalId = setInterval(() => {
+          boxes[currentBoxIndex].style.backgroundColor = getRandomColor();
+          currentBoxIndex = (currentBoxIndex + 1) % boxes.length;
+        }, 300); // Change speed here (e.g., 300ms)
+      }
+
+      // Stop color changes
+      function stopColors() {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+
+      // Reset to original colors
+      function resetColors() {
+        const boxes = document.querySelectorAll(".box");
+        boxes.forEach((box, index) => {
+          box.style.backgroundColor = originalColors[index];
+        });
+        stopColors();
+        currentBoxIndex = 0;
+      }
+    </script>
+  </body>
+</html>

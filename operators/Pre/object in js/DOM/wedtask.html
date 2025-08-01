@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Text Analyzer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background-color: #f0f0f0;
+      text-align: center;
+    }
+
+    textarea {
+      width: 90%;
+      height: 200px;
+      padding: 15px;
+      font-size: 18px;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+      resize: none;
+      margin-bottom: 20px;
+    }
+
+    .button-group {
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      margin: 0 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      color: white;
+    }
+
+    #uppercaseBtn {
+      background-color: #007bff;
+    }
+
+    #removeBtn {
+      background-color: #dc3545;
+    }
+
+    .count-box {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    .count-box span {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Text Analyzer</h1>
+
+  <textarea id="textInput" placeholder="Type your text here..."></textarea>
+
+  <div class="button-group">
+    <button id="uppercaseBtn">UPPERCASE</button>
+    <button id="removeBtn">REMOVE</button>
+  </div>
+
+  <div class="count-box">
+    Number of Letters: <span id="letterCount">0</span><br>
+    Number of Words: <span id="wordCount">0</span>
+  </div>
+
+  <script>
+    const textInput = document.getElementById("textInput");
+    const letterCount = document.getElementById("letterCount");
+    const wordCount = document.getElementById("wordCount");
+    const uppercaseBtn = document.getElementById("uppercaseBtn");
+    const removeBtn = document.getElementById("removeBtn");
+
+    function updateCounts() {
+      const text = textInput.value;
+      const letters = text.replace(/\s/g, ''); // remove all whitespace
+      const words = text.trim().split(/\s+/).filter(Boolean); // split by spaces
+
+      letterCount.textContent = letters.length;
+      wordCount.textContent = words.length;
+    }
+
+    textInput.addEventListener("input", updateCounts);
+
+    uppercaseBtn.addEventListener("click", () => {
+      textInput.value = textInput.value.toUpperCase();
+      updateCounts();
+    });
+
+    removeBtn.addEventListener("click", () => {
+      textInput.value = "";
+      updateCounts();
+    });
+
+    // Initialize counts on page load
+    updateCounts();
+  </script>
+
+</body>
+</html>
